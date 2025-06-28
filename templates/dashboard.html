@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forest Fire Predictor Dashboard</title>
+    <meta http-equiv="refresh" content="10"> <!-- Auto-refresh every 10 seconds -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f6f9fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #dc3545;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .section {
+            padding: 20px;
+        }
+
+        .latest-data {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .graph-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .graph {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .graph img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .map-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        iframe {
+            border: none;
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>🔥 Forest Fire Predictor Dashboard</h1>
+        <p>Real-time embedded AI monitor</p>
+    </div>
+
+    <div class="section latest-data">
+        <h2>📟 Latest Sensor Values</h2>
+        {% if latest is not none %}
+            <p><strong>Time:</strong> {{ latest.Timestamp }}</p>
+            <p><strong>🌡️ Temperature:</strong> {{ latest.Temperature }} °C</p>
+            <p><strong>💧 Humidity:</strong> {{ latest.Humidity }} %</p>
+            <p><strong>🛢️ Gas:</strong> {{ latest.Gas }}</p>
+            <p><strong>🚨 Fire Risk:</strong> <span style="color: red; font-weight: bold;">{{ latest.Prediction }}</span></p>
+        {% else %}
+            <p>No data available.</p>
+        {% endif %}
+    </div>
+
+    <div class="section graph-container">
+        <div class="graph">
+            <h3>Temperature Over Time</h3>
+            <img src="/static/graph_temperature.png" alt="Temperature Graph">
+        </div>
+        <div class="graph">
+            <h3>Humidity Over Time</h3>
+            <img src="/static/graph_humidity.png" alt="Humidity Graph">
+        </div>
+        <div class="graph">
+            <h3>Gas Sensor Over Time</h3>
+            <img src="/static/graph_gas.png" alt="Gas Graph">
+        </div>
+        <div class="graph">
+            <h3>Fire Risk Over Time</h3>
+            <img src="/static/graph_risk.png" alt="Fire Risk Graph">
+        </div>
+    </div>
+
+    <div class="section map-container">
+        <h2>🗺️ Live Fire Map</h2>
+        <iframe src="/map"></iframe>
+    </div>
+
+</body>
+</html>
