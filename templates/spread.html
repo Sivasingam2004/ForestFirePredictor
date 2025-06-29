@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fire Spread Simulation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <h2 class="text-center text-warning mb-4">⏱️ Simulated Fire Spread (If Untreated)</h2>
+        <div class="row text-center">
+            <div class="col-md-6 mb-3">
+                <h5>2 Hours</h5>
+                <img src="{{ url_for('static', filename='maps/fire_spread_2hr.png') }}" class="img-fluid border border-dark" alt="2hr Spread">
+            </div>
+            <div class="col-md-6 mb-3">
+                <h5>4 Hours</h5>
+                <img src="{{ url_for('static', filename='maps/fire_spread_4hr.png') }}" class="img-fluid border border-dark" alt="4hr Spread">
+            </div>
+            <div class="col-md-6 mb-3">
+                <h5>6 Hours</h5>
+                <img src="{{ url_for('static', filename='maps/fire_spread_6hr.png') }}" class="img-fluid border border-dark" alt="6hr Spread">
+            </div>
+            <div class="col-md-6 mb-3">
+                <h5>12 Hours</h5>
+                <img src="{{ url_for('static', filename='maps/fire_spread_12hr.png') }}" class="img-fluid border border-dark" alt="12hr Spread">
+            </div>
+            <div class="col-12 mb-3">
+                <h5>24 Hours</h5>
+                <img src="{{ url_for('static', filename='maps/fire_spread_24hr.png') }}" class="img-fluid border border-dark" alt="24hr Spread">
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-secondary">⬅️ Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

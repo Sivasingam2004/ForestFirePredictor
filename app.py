@@ -1,22 +1,26 @@
+# app.py
 from flask import Flask, render_template
-import pandas as pd
-import generate_graphs
+import os
 
 app = Flask(__name__)
 
-@app.route("/")
-def index():
-    try:
-        generate_graphs.main()  # Regenerate graphs
-        df = pd.read_csv("fire_logs.csv")
-        latest = df.iloc[-1] if not df.empty else None
-        return render_template("dashboard.html", latest=latest)
-    except Exception as e:
-        return f"<h1>Error loading dashboard: {e}</h1>"
+@app.route('/')
+def home():
+    return render_template('index.html')
 
-@app.route("/map")
-def map_view():
-    return render_template("map.html")  # Show map view
+@app.route('/prediction')
+def prediction():
+    pred_map_path = os.path.join('static', 'maps', 'predicted_fire_map.png')
+    return render_template('prediction.html', image_path=pred_map_path)
 
-if __name__ == "__main__":
+@app.route('/spread')
+def spread():
+    time_steps = ['2hr', '4hr', '6hr', '12hr', '24hr']
+    images = []
+    for t in time_steps:
+        path = os.path.join('static', 'maps', f'fire_spread_{t}.png')
+        images.append({'label': f'Fire Spread after {t}', 'path': path})
+    return render_template('spread.html', images=images)
+
+if __name__ == '__main__':
     app.run(debug=True)
